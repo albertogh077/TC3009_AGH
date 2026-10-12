@@ -38,7 +38,6 @@ export type Salud = {
 // por eso el backend trae CORS(app).
 const API = `http://${window.location.hostname}:8080`;
 
-
 export async function enviar(messages: Mensaje[]): Promise<Respuesta> {
   const r = await fetch(`${API}/api/chat`, {
     method: "POST",
