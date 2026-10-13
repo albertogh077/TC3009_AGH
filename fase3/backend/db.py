@@ -87,8 +87,8 @@ def guardar_mensaje(conversacion_id, rol, contenido, tokens=None):
     # raise NotImplementedError("COMPLETA 1: falta el INSERT en backend/db.py")
     with pool.connection() as con:
         con.execute(
-            "INSERT INTO mesaje(conversacion_id,rol,contenido,tokens)"
-            "VALUES (%s,%s,%s,%s)",
+            "INSERT INTO mensaje (conversacion_id, rol, contenido, tokens) "
+            "VALUES (%s, %s, %s, %s)",
             (conversacion_id,rol,contenido,tokens),
         )
 
@@ -117,7 +117,7 @@ def leer_mensajes(conversacion_id):
     # raise NotImplementedError("COMPLETA 2: falta el SELECT en backend/db.py")
     with pool.connection() as con:
         filas = con.execute(
-            "SELECT rol, contenido FROM mensaje WHERE conversation_id = %s ORDER BY id",
+            "SELECT rol, contenido FROM mensaje WHERE conversacion_id = %s ORDER BY id",
             (conversacion_id,),
         ).fetchall()
     return [{"role":r,"content":c} for r,c in filas]
